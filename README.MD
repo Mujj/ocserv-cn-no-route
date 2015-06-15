@@ -1,43 +1,47 @@
 # ocserv-cn-no-route
 
-## ®aÉúß^³Ì
+## ç”¢ç”ŸéŽç¨‹
 
-1¡¢Éú³É×îÐÂ¹úÄÚIPÁÐ±íchnroute.txt
+1ã€ç”Ÿæˆæœ€æ–°å›½å†…IPåˆ—è¡¨chnroute.txt
 
 ```
 curl 'http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest' | grep ipv4 | grep CN | awk -F\| '{ printf("%s/%d\n", $4, 32-log($5)/log(2)) }' > chnroute.txt
 ```
 
-2¡¢ºÏ²¢chnroute.txt(334490624 IPs)£¬Éú³Échnroute_merged.txt(334490624 IPs)
+2ã€åˆå¹¶chnroute.txt(334490624 IPs)ï¼Œç”Ÿæˆchnroute_merged.txt(334490624 IPs)
 
-3¡¢½«ËùÓÐ/12¼°ÒÔÉÏ¸Ä³É/11£¬²¢ºÏ²¢£¬Éú³É11_143.txt(713031680 IPs)
+3ã€å°†æ‰€æœ‰/12åŠä»¥ä¸Šæ”¹æˆ/11ï¼Œå¹¶åˆå¹¶ï¼Œç”Ÿæˆ11_143.txt(713031680 IPs)
 
-4¡¢Éú³É²»º¬±£ÁôIPµÄcn-no-route.txt(712965888 IPs)
+4ã€ç”Ÿæˆä¸å«ä¿ç•™IPçš„cn-no-route.txt(712965888 IPs)(å‰”é™¤11_143.txtä¸­çš„ä¿ç•™IPï¼š192.168.0.0/16ã€203.0.113.0/24)
 
-ÌÞ³ý11_143.txtÖÐ±£ÁôIP£º192.168.0.0/16¡¢203.0.113.0/24
-
-5¡¢Ìí¼Ó±£ÁôIP²¢ºÏ²¢£¬Éú³Écn-no-route2.txt(1305674752 IPs)
+5ã€æ·»åŠ ä¿ç•™IPå¹¶åˆå¹¶ï¼Œç”Ÿæˆcn-no-route2.txt(1305674752 IPs)
 
 
-## ×¢ÒâÊÂí—
+## æ³¨æ„äº‹é …
 
-ocservÐèÒªÐÞ¸Äsrc/vpn.hÀ´Ö§³Ö³¬¹ý96ÐÐ(ocservÄ¬ÈÏÖµ)µ«²»³¬¹ý200ÐÐ(Cisco AnyConnect×î´óÖµ)µÄÂ·ÓÉ±í:
+1ã€ocservéœ€è¦ä¿®æ”¹src/vpn.hæ¥æ”¯æŒè¶…è¿‡96è¡Œ(ocservé»˜è®¤å€¼)ä½†ä¸è¶…è¿‡200è¡Œ(Cisco AnyConnectæœ€å¤§å€¼)çš„è·¯ç”±è¡¨:
 
 ```
 #define MAX_CONFIG_ENTRIES 96 
 ```
 
-96¸ÄÎª200ÒÔÉÏ
+96æ”¹ä¸º200ä»¥ä¸Š
+
+2ã€æ ¹æ®[Ciscoå®˜æ–¹æ–‡æ¡£](http://www.cisco.com/c/en/us/products/collateral/security/ios-sslvpn/prod_white_paper0900aecd80512071.html)ï¼Œno-routeå’Œrouteä¸èƒ½åŒæ—¶ä½¿ç”¨ã€‚
+
+```
+You can specify either split-include or split-exclude, but you cannot specify both options.
+```
 
 ## Q&A
 
-ÎªÊ²Ã´Ñ¡Ôñ½«ËùÓÐ/12¼°ÒÔÉÏ¸Ä³É/11£¬¶ø²»ÊÇ½«ËùÓÐ/13¼°ÒÔÉÏ¸Ä³É/12»ò½«ËùÓÐ/11¼°ÒÔÉÏ¸Ä³É/10£¿
+ä¸ºä»€ä¹ˆé€‰æ‹©å°†æ‰€æœ‰/12åŠä»¥ä¸Šæ”¹æˆ/11ï¼Œè€Œä¸æ˜¯å°†æ‰€æœ‰/13åŠä»¥ä¸Šæ”¹æˆ/12æˆ–å°†æ‰€æœ‰/11åŠä»¥ä¸Šæ”¹æˆ/10ï¼Ÿ
 
-* ÈôŒ¢ËùÓÐ/13¼°ÒÔÉÏ¸Ä³É/12£¬„t²»º¬±£ÁôIPµÄÂ·ÓÉ±íÊÇ261—l(580911104 IPs)£¬³¬ß^ÁË¿Í‘ô¶ËÏÞÖÆµÄ×î¸ß200—l¡£
-* ÈôŒ¢ËùÓÐ/12¼°ÒÔÉÏ¸Ä³É/11£¬„t²»º¬±£ÁôIPµÄÂ·ÓÉ±íÊÇ143—l(713031680 IPs)¡£
-* ÈôŒ¢ËùÓÐ/11¼°ÒÔÉÏ¸Ä³É/10£¬„t²»º¬±£ÁôIPµÄÂ·ÓÉ±íÊÇ69—l(847249408 IPs)£¬IP¹ ‡úßMÒ»²½”U´ó£¬Õ`²îßMÒ»²½”U´ó¡£
+* è‹¥å°‡æ‰€æœ‰/13åŠä»¥ä¸Šæ”¹æˆ/12ï¼Œå‰‡ä¸å«ä¿ç•™IPçš„è·¯ç”±è¡¨æ˜¯261æ¢(580911104 IPs)ï¼Œè¶…éŽäº†å®¢æˆ¶ç«¯é™åˆ¶çš„æœ€é«˜200æ¢ã€‚
+* è‹¥å°‡æ‰€æœ‰/12åŠä»¥ä¸Šæ”¹æˆ/11ï¼Œå‰‡ä¸å«ä¿ç•™IPçš„è·¯ç”±è¡¨æ˜¯143æ¢(713031680 IPs)ã€‚
+* è‹¥å°‡æ‰€æœ‰/11åŠä»¥ä¸Šæ”¹æˆ/10ï¼Œå‰‡ä¸å«ä¿ç•™IPçš„è·¯ç”±è¡¨æ˜¯69æ¢(847249408 IPs)ï¼ŒIPç¯„åœé€²ä¸€æ­¥æ“´å¤§ï¼Œèª¤å·®é€²ä¸€æ­¥æ“´å¤§ã€‚
 
-## [±£ÁôIP](http://en.wikipedia.org/wiki/Reserved_IP_addresses) (592708864 IPs)
+## [ä¿ç•™IP](http://en.wikipedia.org/wiki/Reserved_IP_addresses) (592708864 IPs)
 * 0.0.0.0/8 
 * 10.0.0.0/8 
 * 100.64.0.0/10 
